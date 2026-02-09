@@ -1,0 +1,198 @@
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Dental Intelligence ROI Calculator</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Red+Hat+Text:wght@400;500;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <div class="container">
+        <header class="header">
+            <img src="https://4394269.fs1.hubspotusercontent-na1.net/hubfs/4394269/di%20logo%20dark.png" alt="Dental Intelligence" class="logo-image">
+        </header>
+
+        <main class="main-content">
+            <section class="intro-section">
+                <div class="intro-with-icon">
+                    <img src="https://cdn.prod.website-files.com/6266d8ef8c92b1230d1e0cbb/67c0062059183921f03412e1_ROI-Calc-Title%402x.png" alt="ROI Calculator" class="intro-icon">
+                    <div class="intro-text">
+                        <h2 class="section-title">See What <span id="practiceNameTitle">Your Practice</span> Could Be Saving with Surcharging</h2>
+                        <p class="section-description">
+                            Processing fees are one of the largest hidden costs in dental practices — often accounting for 
+                            2-4% of total collections. For a practice processing $80,000 monthly, that's up to $38,400 
+                            leaving your bottom line every year.
+                        </p>
+                        <p class="section-description">
+                            Dental Intelligence Payments with Xplor Pay Empower surcharging reduces your effective rate to 
+                            approximately 1.39%, helping practices reclaim thousands of dollars annually — money that can be 
+                            reinvested in your team, technology, or take-home pay.
+                        </p>
+                    </div>
+                </div>
+            </section>
+
+            <section class="calculator-section">
+                <div class="card input-card">
+                    <h3 class="card-title">Enter <span id="practiceNameDetails">Your Practice</span> Details</h3>
+                    
+                    <div class="form-grid">
+                        <div class="form-group">
+                            <label for="monthlyVolume">What's Your Monthly Card Processing Volume?</label>
+                            <div class="input-wrapper">
+                                <span class="input-prefix">$</span>
+                                <input type="number" id="monthlyVolume" placeholder="80000" min="0" step="1000">
+                            </div>
+                        </div>
+
+                        <div class="form-group">
+                            <label for="competitorSaas">What Do You Pay Your Current Provider Monthly?</label>
+                            <div class="input-wrapper">
+                                <span class="input-prefix">$</span>
+                                <input type="number" id="competitorSaas" placeholder="e.g., 499" min="0" step="1">
+                            </div>
+                        </div>
+
+                        <div class="form-group">
+                            <label for="competitorRate">What's Your Current Effective Processing Rate?</label>
+                            <div class="input-wrapper">
+                                <input type="number" id="competitorRate" placeholder="2.8" min="0" max="10" step="0.1">
+                                <span class="input-suffix">%</span>
+                            </div>
+                            <div class="helper-text">
+                                <strong>Not sure?</strong> Most practices pay 2.8-3.5%. Check your last statement or use 3% as an estimate.
+                            </div>
+                        </div>
+
+                        <div class="form-group">
+                            <label for="diCost">Dental Intelligence Monthly Investment</label>
+                            <div class="input-wrapper">
+                                <span class="input-prefix">$</span>
+                                <input type="number" id="diCost" placeholder="" min="0" step="1" readonly class="readonly-input">
+                            </div>
+                            <div class="helper-text">
+                                Your AE will provide your custom pricing
+                            </div>
+                        </div>
+
+                        <div class="form-group">
+                            <label for="creditCardPercentage">What Percentage of Payments Are Credit Cards?</label>
+                            <div class="input-wrapper">
+                                <input type="number" id="creditCardPercentage" placeholder="50" min="0" max="100" step="1">
+                                <span class="input-suffix">%</span>
+                            </div>
+                            <div class="helper-text">
+                                Typically 45-65% for most practices
+                            </div>
+                        </div>
+                    </div>
+
+                    <button class="calculate-btn" onclick="calculateROI()">Calculate My Savings</button>
+                </div>
+
+                <div class="results-section" id="resultsSection" style="display: none;">
+                    <div class="card comparison-card">
+                        <h3 class="card-title">Here's Your Side-by-Side Comparison</h3>
+                        
+                        <div class="comparison-grid">
+                            <div class="comparison-col">
+                                <h4 class="provider-name" id="competitorName">Current Provider</h4>
+                                <div class="cost-breakdown">
+                                    <div class="cost-item">
+                                        <span class="cost-label">Platform Cost</span>
+                                        <span class="cost-value" id="compSaas">$0</span>
+                                    </div>
+                                    <div class="cost-item">
+                                        <span class="cost-label">Processing Fees</span>
+                                        <span class="cost-value" id="compProcessing">$0</span>
+                                    </div>
+                                    <div class="cost-total">
+                                        <span class="total-label">Total Monthly Cost</span>
+                                        <span class="total-value" id="compTotal">$0</span>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="comparison-col highlight">
+                                <h4 class="provider-name">Dental Intelligence</h4>
+                                <div class="cost-breakdown">
+                                    <div class="cost-item">
+                                        <span class="cost-label">Platform Cost</span>
+                                        <span class="cost-value" id="diSaas">$0</span>
+                                    </div>
+                                    <div class="cost-item">
+                                        <span class="cost-label">Processing Fees</span>
+                                        <span class="cost-value" id="diProcessing">$0</span>
+                                    </div>
+                                    <div class="cost-total">
+                                        <span class="total-label">Total Monthly Cost</span>
+                                        <span class="total-value" id="diTotal">$0</span>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="card savings-card">
+                        <div class="savings-highlight">
+                            <div class="savings-row">
+                                <span class="savings-label"><span id="practiceNameMonthlySavings">You</span> Could Save Monthly</span>
+                                <span class="savings-value" id="monthlySavings">$0</span>
+                            </div>
+                            <div class="savings-row annual">
+                                <span class="savings-label"><span id="practiceNameAnnualSavings">You</span> Could Save Annually</span>
+                                <span class="savings-value large" id="annualSavings">$0</span>
+                            </div>
+                        </div>
+                        <div class="savings-context">
+                            <p>That's real money you could reinvest in your practice — new equipment, team bonuses, or increased profitability.</p>
+                        </div>
+                    </div>
+
+                    <div class="card benchmark-card">
+                        <h3 class="card-title">Industry Benchmarks</h3>
+                        <div class="benchmark-grid">
+                            <div class="benchmark-item">
+                                <h5>Annual Card Volume</h5>
+                                <p class="benchmark-range">Monthly: $58,333 - $83,333</p>
+                                <p class="benchmark-range">Annually: $700,000 - $1,000,000</p>
+                            </div>
+                            <div class="benchmark-item">
+                                <h5>Credit Card Percentage</h5>
+                                <p class="benchmark-text">
+                                    Practices with lower transaction sizes (general dentistry, pediatrics) typically have 
+                                    45-50% credit volume, while specialty practices may see 60-75%.
+                                </p>
+                            </div>
+                            <div class="benchmark-item">
+                                <h5>Effective Rates</h5>
+                                <p class="benchmark-text">
+                                    Across U.S. dental practices, total credit card processing fees typically average 
+                                    2.8–3.5% of card volume, including interchange, network assessments, and processor markup.
+                                </p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="info-note">
+                        <p>
+                            <strong>Note:</strong> This is an estimate based on the numbers provided. Actual savings may 
+                            vary due to monthly fluctuations in credit card volume. Dental Intelligence Payments with 
+                            Xplor Pay Empower surcharging uses an effective rate of approximately 1.39% when surcharging 
+                            is applied to eligible transactions.
+                        </p>
+                    </div>
+                </div>
+            </section>
+        </main>
+
+        <footer class="footer">
+            <p>© 2026 Dental Intelligence. All rights reserved.</p>
+        </footer>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+</html>

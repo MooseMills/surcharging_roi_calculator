@@ -1,7 +1,7 @@
 :root {
     /* Primary Colors - Updated to match dentalintel.com */
     --navy: #002955;
-    --blue-bright: #0060C6;
+    --blue: #0060C6;
     --blue-light: #CCEEFF;
     --green: #00AB63;
     --green-light: #D9FFE8;
@@ -262,7 +262,7 @@ input[type="number"] {
     font-weight: 700;
     font-family: var(--font-body);
     color: var(--white);
-    background: var(--green);
+    background: var(--blue);
     border: none;
     border-radius: var(--radius-md);
     cursor: pointer;
@@ -275,7 +275,7 @@ input[type="number"] {
 .calculate-btn:hover {
     transform: translateY(-2px);
     box-shadow: var(--shadow-lg);
-    background: #00c572;
+    background: var(--navy);
 }
 
 .calculate-btn:active {
@@ -430,7 +430,7 @@ input[type="number"] {
 }
 
 .savings-context p {
-    font-size: 15px;
+    font-size: 20px;
     color: var(--white);
     opacity: 0.95;
     font-style: italic;
@@ -466,7 +466,7 @@ input[type="number"] {
     padding: var(--spacing-lg);
     background: var(--cream);
     border-radius: var(--radius-md);
-    border-left: 4px solid var(--blue-bright);
+    border-left: 4px solid var(--blue);
 }
 
 .info-note p {

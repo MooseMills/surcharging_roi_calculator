@@ -1,6 +1,4 @@
-// Constants based on the calculator data
-const DI_SURCHARGE_RATE = 1.39; // Effective rate with surcharging (1.39%)
-const DI_SURCHARGE_RATE_DECIMAL = DI_SURCHARGE_RATE / 100;
+// Dental Intelligence ROI Calculator JavaScript
 
 // Parse URL parameters and pre-fill form on page load
 function prefillFromURLParams() {
@@ -108,9 +106,26 @@ function calculateROI() {
     const competitorTotalCost = competitorSaas + competitorProcessingCost;
 
     // Calculate DI costs with surcharging
-    // With surcharging, the effective rate on credit cards is ~1.39%
-    // Debit cards are processed normally (assuming same rate for simplicity)
-    const diProcessingCost = monthlyVolume * DI_SURCHARGE_RATE_DECIMAL;
+    // Formula from updated Excel (cell B66):
+    // =((Total Volume + Credit $ * 3%) * 2.913%) - ((Credit $ + Credit $ * 3%) * 2.913%)
+    // 
+    // Breaking it down:
+    // - First part: Process the total volume including surcharge at 2.913%
+    // - Second part: Subtract the fees on credit volume (including surcharge) at 2.913%
+    // - This gives us the net fees after surcharging benefit
+    
+    const baseProcessingRate = 0.02913; // 2.913%
+    const surchargeCollected = creditCardVolume * 0.03; // 3% surcharge on credit cards
+    
+    // Calculate fees with surcharging using the Excel formula
+    const feesWithSurcharging = ((monthlyVolume + surchargeCollected) * baseProcessingRate) - 
+                                 ((creditCardVolume + surchargeCollected) * baseProcessingRate);
+    
+    // Calculate the effective rate
+    const adjustedVolume = monthlyVolume + surchargeCollected;
+    const effectiveRate = feesWithSurcharging / adjustedVolume;
+    
+    const diProcessingCost = feesWithSurcharging;
     const diTotalCost = diCost + diProcessingCost;
 
     // Calculate savings

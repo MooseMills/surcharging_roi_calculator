@@ -263,7 +263,7 @@ input[type="number"] {
     color: var(--white);
     background: var(--blue-bright);
     border: none;
-    border-radius: var(--radius-md);
+    border-radius: 36px;
     cursor: pointer;
     transition: all 0.2s ease;
     box-shadow: var(--shadow-md);

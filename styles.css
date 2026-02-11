@@ -1,7 +1,7 @@
 :root {
     /* Primary Colors - Updated to match dentalintel.com */
     --navy: #002955;
-    --blue: #0060C6;
+    --blue-bright: #0060C6;
     --blue-light: #CCEEFF;
     --green: #00AB63;
     --green-light: #D9FFE8;
@@ -247,7 +247,6 @@ input[type="number"] {
     padding: var(--spacing-sm);
     background: var(--cream);
     border-radius: var(--radius-sm);
-    border-left: 3px solid var(--green);
 }
 
 .helper-text strong {
@@ -262,7 +261,7 @@ input[type="number"] {
     font-weight: 700;
     font-family: var(--font-body);
     color: var(--white);
-    background: var(--blue);
+    background: var(--blue-bright);
     border: none;
     border-radius: var(--radius-md);
     cursor: pointer;
@@ -379,11 +378,7 @@ input[type="number"] {
     background: linear-gradient(135deg, var(--green) 0%, #00c572 100%);
     border: none;
     color: var(--white);
-    box-shadow: var(--shadow-xl);
-}
-
-.savings-card:hover {
-    transform: none;
+    box-shadow: var(--shadow-md);
 }
 
 .savings-highlight {
@@ -437,6 +432,11 @@ input[type="number"] {
 }
 
 /* Benchmark Card */
+.benchmark-card:hover {
+  transform: none;
+  box-shadow: var(--shadow-md);
+}
+
 .benchmark-grid {
     display: grid;
     gap: var(--spacing-md);
@@ -466,7 +466,6 @@ input[type="number"] {
     padding: var(--spacing-lg);
     background: var(--cream);
     border-radius: var(--radius-md);
-    border-left: 4px solid var(--blue);
 }
 
 .info-note p {
